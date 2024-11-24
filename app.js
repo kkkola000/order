@@ -1,6 +1,11 @@
-// Фиктивный пароль
-const PASSWORD = "123456";
+require('dotenv').config();
 
+const PASSWORD = process.env.PASSWORD; // Пароль из переменной окружения
+
+// Пример использования:
+if (inputPassword === PASSWORD) {
+    // Вход успешен
+}
 // Фиктивные данные заказов (будут сохранены в localStorage)
 let orders = JSON.parse(localStorage.getItem("orders")) || [
     { id: 1, item: "Коляска A", description: "Красная коляска для новорожденных", status: "Доставлено" },
