@@ -1,81 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ввод пароля</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      display: none; /* Скрываем контент страницы до ввода пароля */
-    }
-
-    /* Модальное окно */
-    #passwordModal {
-      display: flex;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      justify-content: center;
-      align-items: center;
-    }
-
-    #passwordModalContent {
-      background: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      text-align: center;
-    }
-
-    #passwordInput {
-      width: 80%;
-      padding: 10px;
-      font-size: 16px;
-      margin: 10px 0;
-    }
-
-    #submitPassword {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-
-    #submitPassword:hover {
-      background-color: #0056b3;
-    }
-
-    #error {
-      color: red;
-      margin-top: 10px;
-      display: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Учет заказов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #login, #orders, #editOrder {
+            display: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-  <div id="passwordModal">
-    <div id="passwordModalContent">
-      <h2>Введите пароль</h2>
-      <input type="password" id="passwordInput" placeholder="Пароль">
-      <br>
-      <button id="submitPassword">Войти</button>
-      <p id="error">Неверный пароль! Попробуйте снова.</p>
+    <div id="login">
+        <h1>Вход</h1>
+        <input type="password" id="password" placeholder="Введите пароль">
+        <button onclick="login()">Войти</button>
+        <p id="error" style="color: red;"></p>
     </div>
-  </div>
 
-  <!-- Основной контент страницы -->
-  <h1>Добро пожаловать!</h1>
-  <p>Этот контент виден только после ввода правильного пароля.</p>
+    <div id="orders">
+        <h1>Список заказов</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Товар</th>
+                    <th>Количество</th>
+                    <th>Статус</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <tbody id="ordersTable"></tbody>
+        </table>
+        <button onclick="logout()">Выйти</button>
+    </div>
 
-  <script src="script.js"></script>
+    <div id="editOrder">
+        <h1>Редактировать заказ</h1>
+        <form onsubmit="saveOrder(event)">
+            <label for="item">Товар:</label>
+            <input type="text" id="editItem" required>
+            <br>
+            <label for="quantity">Количество:</label>
+            <input type="number" id="editQuantity" required>
+            <br>
+            <label for="status">Статус:</label>
+            <input type="text" id="editStatus" required>
+            <br><br>
+            <button type="submit">Сохранить</button>
+            <button type="button" onclick="cancelEdit()">Отмена</button>
+        </form>
+    </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
