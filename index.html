@@ -16,12 +16,13 @@
 
     <div id="orders">
         <h1>Список заказов</h1>
+        <button onclick="showAddOrderForm()">Добавить новый заказ</button>
         <table>
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Товар</th>
-                    <th>Количество</th>
+                    <th>Описание</th>
                     <th>Статус</th>
                     <th>Действия</th>
                 </tr>
@@ -37,14 +38,39 @@
             <label for="item">Товар:</label>
             <input type="text" id="editItem" required>
             <br>
-            <label for="quantity">Количество:</label>
-            <input type="number" id="editQuantity" required>
+            <label for="description">Описание:</label>
+            <input type="text" id="editDescription" required>
             <br>
             <label for="status">Статус:</label>
-            <input type="text" id="editStatus" required>
+            <select id="editStatus" required>
+                <option value="В пути">В пути</option>
+                <option value="Доставлено">Доставлено</option>
+                <option value="Отменено">Отменено</option>
+            </select>
             <br><br>
             <button type="submit">Сохранить</button>
             <button type="button" onclick="cancelEdit()">Отмена</button>
+        </form>
+    </div>
+
+    <div id="addOrderForm">
+        <h1>Добавить новый заказ</h1>
+        <form onsubmit="addOrder(event)">
+            <label for="newItem">Товар:</label>
+            <input type="text" id="newItem" required>
+            <br>
+            <label for="newDescription">Описание:</label>
+            <input type="text" id="newDescription" required>
+            <br>
+            <label for="newStatus">Статус:</label>
+            <select id="newStatus" required>
+                <option value="В пути">В пути</option>
+                <option value="Доставлено">Доставлено</option>
+                <option value="Отменено">Отменено</option>
+            </select>
+            <br><br>
+            <button type="submit">Добавить заказ</button>
+            <button type="button" onclick="cancelAddOrder()">Отмена</button>
         </form>
     </div>
 
